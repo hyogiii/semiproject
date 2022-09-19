@@ -43,4 +43,29 @@ public class MemberDao {
 		return m;
 	}
 
+	public int insertMember(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "insert into member_tbl values(member_seq.nextval,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),3)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getMemberBirth());
+			pstmt.setString(5, m.getMemberPhone());
+			pstmt.setString(6, m.getMemberAddr());
+			pstmt.setString(7, m.getMemberEmail());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

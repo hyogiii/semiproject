@@ -87,4 +87,4 @@
         </div>
     </div><!--헤더 끝-->
     <!-- js -->
-    <script src="js/header.js"></script>
+    <script src="/js/header.js"></script>

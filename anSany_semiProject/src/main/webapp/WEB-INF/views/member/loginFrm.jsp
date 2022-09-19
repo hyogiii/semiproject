@@ -40,7 +40,7 @@
                             <ul>
                                 <li><a href="#">아이디/비밀번호 찾기</a>
                                 </li>
-                                <li><a href="#">회원가입</a>
+                                <li><a href="/joinAgree.do">회원가입</a>
                                 </li>
                             </ul>
                         </div>
@@ -49,6 +49,6 @@
             </div>
         </div><!--login-wrap 끝-->
     </div><!--컨텐츠 끝-->
-
+<%@ include file ="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
