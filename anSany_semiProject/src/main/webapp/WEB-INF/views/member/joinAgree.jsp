@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>약관동의</title>
+<style>
+	.header-logo>a>img{
+		margin-bottom: 14px;
+	}
+</style>
 <!--css-->
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/joinAgree.css">

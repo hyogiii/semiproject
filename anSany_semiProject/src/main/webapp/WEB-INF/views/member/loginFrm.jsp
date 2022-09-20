@@ -14,6 +14,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.header-logo>a>img{
+		margin-top: 29.5px;
+	}
+</style>
 </head>
 <body>
 <%@ include file ="/WEB-INF/views/common/header.jsp" %>

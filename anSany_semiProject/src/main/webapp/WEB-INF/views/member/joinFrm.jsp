@@ -26,7 +26,7 @@
                         <label for="memberId">아이디</label>
                         <input type="text" name="memberId" id="memberId" class="join-input-form" placeholder="아이디" required>   
                         <button type="button" id="idChkBtn" class="idChkBtn">중복체크</button>
-                        <span class="comment"></span>
+                        <span class="comment" id="idComment"></span>
                     </div>
                     <div class="join-box">
                         <label for="memberPw">비밀번호</label>
@@ -42,15 +42,16 @@
                         <label for="memberEmail">이메일</label>
                         <input type="text" name="memberEmail" id="memberEmail" class="join-input-form" placeholder="이메일 (ex : ansany@gmail.com)" required>
                         <span class="comment"></span>
-                        <button id="sendEmailBtn" class="sendEmailBtn">인증메일전송</button>
+                        <button id="sendEmailBtn" class="sendEmailBtn" type="button">인증메일전송</button>
                         <!--display: none-->
                         <div id="auth">
                             <input type="text" id="authCode" placeholder="인증코드입력">
-                            <i></i>
-                            <button class="inputCode" id="authBtn">인증하기</button>
+                            <button class="inputCode" id="authBtn" type="button">인증하기</button>
                             <!--시간제한용-->
+                            <div class="timeBox">
                             <span id="timeZone"></span>
-                            <span id="authMsg"></span>
+                            <span id="authMsg"></span>      
+                            </div>
                         </div>
                         <span class="comment"></span>
                     </div>

@@ -14,7 +14,7 @@ public class MemberService {
 		super();
 		dao= new MemberDao();
 	}
-
+	//login
 	public Member selectOneMember(Member member) {
 		Connection conn = JDBCTemplate.getConnection();
 		Member m = dao.selectOneMember(conn,member);
@@ -32,6 +32,13 @@ public class MemberService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	//id를 통한 update
+	public Member selectOneMember(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = dao.selectChkMember(conn, memberId);
+		JDBCTemplate.close(conn);
+		return m;
 	}
 	
 	

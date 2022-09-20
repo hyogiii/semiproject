@@ -1,3 +1,12 @@
+let idChkResult = false;
+let pwChkResult = false;
+let pwReChkResult = false;
+let emailChkResult = false;
+let nameChkResult = false;
+let birthChkResult = false;
+let phoneChkResult = false;
+
+
 $("#memberId").on("keyup",function(event){
     const idValue = $(this).val();
     const idComment = $("#idChkBtn").next();
@@ -18,13 +27,22 @@ $("#memberId").on("keyup",function(event){
         }else{
             //중복아이디 체크(ajax)
             $.ajax({
-				url : "/CheckId.do",
-				type: "get"
-});
-			
-            idComment.text("사용 가능한 아이디 입니다");
-            idComment.css("color","blue");
-            idChkResult = true;
+				url : "/ajaxCheckId.do",
+				type: "get",
+				data: {memberId : idValue},
+				success: function(data){
+					if(data == "1"){
+						$("#idComment").text("이미 사용중인 아이디입니다.");
+						$("#idComment").css("color","red");
+						idChkResult = false;
+						event.preventDefault();
+					}else if(data =="0"){
+						$("#idComment").text("사용가능한 아이디입니다.");
+						$("#idComment").css("color","blue");
+						idChkResult = true;
+					}
+				}
+			});
         }
     }
 });
@@ -74,6 +92,7 @@ $("#memberPwRe").on("keyup",function(event){
         event.preventDefault();
     }
 });
+
 $("#memberEmail").on("keyup",function(event){
     const emailValue = $(this).val();
     const emailComment =$(this).next();
@@ -89,7 +108,7 @@ $("#memberEmail").on("keyup",function(event){
             //이메일 중복확인후
             emailComment.text("사용가능합니다.");
             emailComment.css("color","blue");
-            emailChkResult = ture;
+            emailChkResult = true;
         }else{
             emailComment.text("다시입력하세요");
             emailComment.css("color","red");
@@ -136,7 +155,7 @@ $("#memberBirth").on("keyup",function(event){
         if(birthReg.test(birthValue)){
             birthComment.text("사용가능합니다.");
             birthComment.css("color","blue");
-            birthChkResult = ture;
+            birthChkResult = true;
         }else{
             birthComment.text("생년월일 8자리 - 포함입니다.");
             birthComment.css("color","red");
@@ -161,11 +180,11 @@ $("#memberPhone").on("keyup",function(event){
         if(phoneReg.test(phoneValue)){
             phoneComment.text("사용가능합니다.");
             phoneComment.css("color","blue");
-            phoneChkResult = ture;
+            phoneChkResult = true;
         }else{
             phoneComment.text("핸드폰 번호는 - 포함입니다.");
             phoneComment.css("color","red");
-            phoneChkResult = ture;
+            phoneChkResult = false;
             event.preventDefault();
         }
     }
@@ -173,10 +192,83 @@ $("#memberPhone").on("keyup",function(event){
 
 
 $(".join-btn").on("click",function(event){
-    if(idChkResult && pwChkResult && pwReChkResult && nameChkResult && birthChkResult && phoneChkResult){
-        alert("가입에 성공하였습니다.");
+    if(idChkResult && pwChkResult && pwReChkResult &&authStatus && nameChkResult && birthChkResult && phoneChkResult){
+        
     }else{
         alert("입력값을 확인하세요");
         event.preventDefault();
     }
 });
+
+let mailCode;
+$("#sendEmailBtn").on("click",function(event){
+	if(emailChkResult){
+		const email = $("#memberEmail").val();
+		$.ajax({
+			url : "/sendMail.do",
+			data : {email:email},
+			type: "post",
+			success : function(data){
+				mailCode = data;
+				$("#auth").show();
+				authTime();
+			}
+		});
+	}else{
+		alert("메일 주소를 확인해주세요");
+		event.preventDefault();
+	}
+});
+
+	let intervalId;
+	function authTime(){
+		$("#timeZone").html("<span id='min'>3</span> : <span id='sec'>00</span>");
+		intervalId = window.setInterval(function(){
+			timeCount();
+		},1000);
+	}
+	function timeCount(){
+		const min = Number($("#min").text());
+		const sec = $("#sec").text();
+		if(sec == "00"){
+			if(min == 0){
+				mailCode = null;
+				clearInterval(intervalId);
+			}else{
+				$("#min").text(min-1);
+				$("#sec").text(59);
+			}
+		}else{
+			const newSec = Number(sec)-1;
+			if(newSec<10){
+				$("#sec").text("0"+newSec);
+			}else{
+				$("#sec").text(newSec);
+			}
+		}
+	}
+	
+	let authStatus = false;
+	$("#authBtn").on("click",function(){
+		const inputValue = $("#authCode").val();
+		if(mailCode != null){
+		if(inputValue == mailCode){
+			$("#authMsg").text("인증성공");
+			$("#authMsg").css("color","blue");
+			clearInterval(intervalId);
+			$("#timeZone").hide();
+			authStatus = true;
+		}else{
+			$("#authMsg").text("인증실패");
+			$("#authMsg").css("color","red");
+			authStatus = false;
+			event.preventDefault();
+		}
+			
+		}else{
+			$("#authMsg").text("인증시간 만료");
+			$("#authMsg").css("color","red");
+			authStatus = false;
+			event.preventDefault();
+		}
+	});	
