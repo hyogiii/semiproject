@@ -53,7 +53,7 @@ content{
     overflow: hidden;
     background-image: linear-gradient(to left, #434343 0%, black 100%);
 }
-.header-box>li{
+.header-box li{
     float: left;
     width: calc(100%/3);
     height: 120px;
@@ -61,7 +61,7 @@ content{
     justify-content: center;
     align-items: center;
 }
-.header-box>li:hover{
+.header-box li:hover{
     background-color: #434343;
     color: #fff;
 }

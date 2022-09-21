@@ -23,9 +23,9 @@
                     <a href="/logout.do" class="logoutLink" name="logout">로그아웃</a>
                 </div>
                 <ul class="header-box">
-                    <li class="oneMemberLevel"><a href="#">회원등급</a></li>
-                    <li class="oneMemberInfo"><a href="#">회원정보수정</a></li>
-                    <li class="oneMembercart"><a href="#">장바구니</a></li>
+                    <a href="#"><li class="oneMemberLevel">회원등급</li></a>
+                    <a href="#"><li class="oneMemberInfo">회원정보수정</li></a>
+                    <a href="#"><li class="oneMembercart">장바구니</li></a>
                 </ul>
             </div>
             <div class="mypage-content">

@@ -3,9 +3,7 @@
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="kr.co.ansany.member.modal.vo.Member"/>
     <fullyQualifiedTypeName name="kr.co.ansany.member.modal.service.MemberService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="java.net.ConnectException"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
     <fullyQualifiedTypeName name="org.apache.catalina.connector.Request"/>
     <fullyQualifiedTypeName name="kr.co.ansany.member.model.service.MemberService"/>
@@ -30,4 +28,6 @@
     <fullyQualifiedTypeName name="java.net.PasswordAuthentication"/>
     <fullyQualifiedTypeName name="javax.mail.PasswordAuthentication"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>
