@@ -99,7 +99,7 @@ $("#memberEmail").on("keyup",function(event){
     const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     //이메일 공백확인
     if(emailValue == ""){
-        emailComment.text("이메일을 입력해주세요");
+        emailComment.text("이메일을 입력하세요");
         emailComment.css("color","red");
         emailChkResult = false;
         event.preventDefault();
@@ -123,7 +123,7 @@ $("#memberName").on("keyup",function(event){
     const nameReg = /^[가-힣]{2,7}$/;
     //이름 공백확인
     if(nameValue == ""){
-        nameComment.text("이름을 입력해주세요");
+        nameComment.text("이름을 입력하세요");
         nameComment.css("color","red");
         nameChkResult = false;
         event.preventDefault();
@@ -147,7 +147,7 @@ $("#memberBirth").on("keyup",function(event){
     const birthReg = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
     //생일 공백확인
     if(birthValue == ""){
-        birthComment.text("생일을 입력해주세요");
+        birthComment.text("생일을 입력하세요");
         birthComment.css("color","red");
         birthChkResult = false;
         event.preventDefault();
@@ -171,7 +171,7 @@ $("#memberPhone").on("keyup",function(event){
     const phoneReg = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
     //휴대폰번호 공백확인
     if(phoneValue == ""){
-        phoneComment.text("휴대폰번호를 입력해주세요.");
+        phoneComment.text("휴대폰번호를 입력하세요.");
         phoneComment.css("color","red");
         phoneChkResult = false;
         event.preventDefault();
@@ -215,7 +215,7 @@ $("#sendEmailBtn").on("click",function(event){
 			}
 		});
 	}else{
-		alert("메일 주소를 확인해주세요");
+		alert("메일 주소를 확인하세요");
 		event.preventDefault();
 	}
 });
@@ -253,13 +253,13 @@ $("#sendEmailBtn").on("click",function(event){
 		const inputValue = $("#authCode").val();
 		if(mailCode != null){
 		if(inputValue == mailCode){
-			$("#authMsg").text("인증성공");
+			$("#authMsg").text("인증 완료");
 			$("#authMsg").css("color","blue");
 			clearInterval(intervalId);
 			$("#timeZone").hide();
 			authStatus = true;
 		}else{
-			$("#authMsg").text("인증실패");
+			$("#authMsg").text("인증 실패");
 			$("#authMsg").css("color","red");
 			authStatus = false;
 			event.preventDefault();

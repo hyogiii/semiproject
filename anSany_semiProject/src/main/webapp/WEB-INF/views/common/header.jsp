@@ -66,11 +66,11 @@
                             </div>
                             <div>
                                 <%if(m==null) {%>
-                                <a href="loginFrm.do">
+                                <a href="/loginFrm.do">
                                     <span class="material-icons">person</span>
                                 </a>
                                 <%}else{ %>
-                                <a href="#">
+                                <a href="/myPageFrm.do">
                                     <span class="material-icons" style="color:#5865f5">person</span>
                                 </a>
                                 <%} %>

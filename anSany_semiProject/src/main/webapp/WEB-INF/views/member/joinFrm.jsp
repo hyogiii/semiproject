@@ -25,7 +25,7 @@
                     <div class="join-box">
                         <label for="memberId">아이디</label>
                         <input type="text" name="memberId" id="memberId" class="join-input-form" placeholder="아이디" required>   
-                        <button type="button" id="idChkBtn" class="idChkBtn">중복체크</button>
+                        <button type="button" id="idChkBtn" class="idChkBtn">중복확인</button>
                         <span class="comment" id="idComment"></span>
                     </div>
                     <div class="join-box">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="join-box">
                         <label for="memberPwRe">비밀번호 확인</label>
-                        <input type="password" name="memberPwRe" id="memberPwRe" class="join-input-form" placeholder="비밀번호확인" required>
+                        <input type="password" name="memberPwRe" id="memberPwRe" class="join-input-form" placeholder="비밀번호 확인" required>
                         <span class="comment"></span>
                     </div>
                     <div class="join-box">
@@ -66,7 +66,7 @@
                         <span class="comment"></span>
                     </div>
                     <div class="join-box">
-                        <label for="memberPhone">휴대폰번호</label>
+                        <label for="memberPhone">휴대폰 번호</label>
                         <input type="text" name="memberPhone" id="memberPhone" class="join-input-form" placeholder="휴대폰 번호 (ex : 010-1111-1111)" required>
                         <span class="comment"></span>
                     </div>
