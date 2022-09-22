@@ -24,7 +24,7 @@
                 </div>
                 <ul class="header-box">
                     <a href="#"><li class="oneMemberLevel">회원등급</li></a>
-                    <a href="#"><li class="oneMemberInfo">회원정보수정</li></a>
+                    <a href="/updateMemberInfoFrm.do"><li class="oneMemberInfo">회원정보수정</li></a>
                     <a href="#"><li class="oneMembercart">장바구니</li></a>
                 </ul>
             </div>

@@ -105,4 +105,47 @@ public class MemberDao {
 		return m;
 	}
 
+	public int deleteMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		
+		int result=0;
+		String query = "delete from member_tbl where member_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMemberInfo(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		String query = "update member_tbl set member_pw=?,member_email=?,member_phone=?,member_addr=? where member_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberPw());
+			pstmt.setString(2, member.getMemberEmail());
+			pstmt.setString(3, member.getMemberPhone());
+			pstmt.setString(4, member.getMemberAddr());
+			pstmt.setInt(5, member.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

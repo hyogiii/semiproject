@@ -40,6 +40,28 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return m;
 	}
+	public int deleteMember(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteMember(conn,memberId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int updateMemberInfo(Member member) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateMemberInfo(conn, member);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 }
