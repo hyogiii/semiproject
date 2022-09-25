@@ -70,7 +70,7 @@
                                     <span class="material-icons">person</span>
                                 </a>
                                 <%}else{ %>
-                                <a href="/myPageFrm.do">
+                                <a href="/myPageFrm.do?memberId=<%=m.getMemberId() %>">
                                     <span class="material-icons" style="color:#5865f5">person</span>
                                 </a>
                                 <%} %>

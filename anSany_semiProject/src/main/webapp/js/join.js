@@ -7,7 +7,7 @@ let birthChkResult = false;
 let phoneChkResult = false;
 
 
-$("#memberId").on("keyup",function(event){
+$("#memberId").on("change",function(event){
     const idValue = $(this).val();
     const idComment = $("#idChkBtn").next();
     //아이디 공백확인
@@ -48,7 +48,7 @@ $("#memberId").on("keyup",function(event){
 });
 //ajax
 
-$("#memberPw").on("keyup",function(event){
+$("#memberPw").on("change",function(event){
     const pwValue = $(this).val();
     const pwComment = $("#memberPw").next();
     //비밀번호 공백확인
@@ -73,7 +73,7 @@ $("#memberPw").on("keyup",function(event){
     }
 });
 
-$("#memberPwRe").on("keyup",function(event){
+$("#memberPwRe").on("change",function(event){
     const pw = $("#memberPw");
     const pwValue = pw.val();
     const pwReComment = $(this).next();
@@ -93,7 +93,7 @@ $("#memberPwRe").on("keyup",function(event){
     }
 });
 
-$("#memberEmail").on("keyup",function(event){
+$("#memberEmail").on("change",function(event){
     const emailValue = $(this).val();
     const emailComment =$(this).next();
     const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -117,7 +117,7 @@ $("#memberEmail").on("keyup",function(event){
         }
     }
 });
-$("#memberName").on("keyup",function(event){
+$("#memberName").on("change",function(event){
     const nameValue = $(this).val();
     const nameComment = $(this).next();
     const nameReg = /^[가-힣]{2,7}$/;
@@ -141,7 +141,7 @@ $("#memberName").on("keyup",function(event){
     }
 });
 
-$("#memberBirth").on("keyup",function(event){
+$("#memberBirth").on("change",function(event){
     const birthValue = $(this).val();
     const birthComment = $(this).next();
     const birthReg = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
@@ -165,7 +165,7 @@ $("#memberBirth").on("keyup",function(event){
     }
 });
 
-$("#memberPhone").on("keyup",function(event){
+$("#memberPhone").on("change",function(event){
     const phoneValue = $(this).val();
     const phoneComment = $(this).next();
     const phoneReg = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;

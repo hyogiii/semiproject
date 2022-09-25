@@ -38,19 +38,6 @@ form[name=joinFrm]{
     width: 800px;
     overflow: hidden;
 }
-.join-box:first-child>input{
-    width: 600px;
-}
-#idChkBtn{
-    border: none;
-    width: 200px;
-    height: 56px;
-    font-size: medium;
-    background-color: #e1e1e1;
-}
-#idChkBtn:hover{
-    cursor: pointer;
-}
 .join-box>label{
     display: block;
 }

@@ -1,5 +1,13 @@
+<%@page import="kr.co.ansany.member.model.vo.MyPageOrderData"%>
+<%@page import="kr.co.ansany.member.model.vo.MyQnAData"%>
+<%@page import="kr.co.ansany.member.model.vo.MypageList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	ArrayList<MyQnAData> mqd = (ArrayList<MyQnAData>)request.getAttribute("mqd");
+    	ArrayList<MyPageOrderData> mpod = (ArrayList<MyPageOrderData>)request.getAttribute("mpod");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +26,23 @@
         <div class="mypage-wrap">
             <div class="mypage-header">
                 <h1>마이페이지</h1>
+                
+                <form id = "frm">
+                	<input type="hidden" name="memberId" id="memberId" value="<%=m.getMemberId()%>">
+                	</form>
                 <div class="span-wrap">
-                    <span class="welecome">회원이름 안녕하세요 :)</span>
+                	
+                    <span class="welecome"><%=m.getMemberName() %>님 안녕하세요 :)</span>
                     <a href="/logout.do" class="logoutLink" name="logout">로그아웃</a>
                 </div>
                 <ul class="header-box">
-                    <a href="#"><li class="oneMemberLevel">회원등급</li></a>
+                	<%if(m.getMemberLevel()== 1 ) {%>
+                    <a href="#"><li class="oneMemberLevel">회원등급: 관리자</li></a>
+                    <%}else if(m.getMemberLevel()==2 ) {%>
+                    <a href="#"><li class="oneMemberLevel">회원등급: VIP</li></a>
+                    <%}else {%>
+                    <a href="#"><li class="oneMemberLevel">회원등급: MEMBER</li></a>
+                    <%} %>
                     <a href="/updateMemberInfoFrm.do"><li class="oneMemberInfo">회원정보수정</li></a>
                     <a href="#"><li class="oneMembercart">장바구니</li></a>
                 </ul>
@@ -34,6 +53,7 @@
                     <table>
                         <colgroup>
                             <col style="width: 120px;">
+                            <col style="width: 160px;">
                             <col>
                             <col style="width: 160px;">
                             <col style="width: 160px;">
@@ -43,16 +63,30 @@
                                 <th scope="col">주문일</th>
                                 <th scope="col">주문번호</th>
                                 <th scope="col">상품정보</th>
+                                <th scope="col">배송상태</th>
                                 <th scope="col">상품가격</th>
                             </tr>
                         </tread>
                         <tbody>
+                        	<%for(MyPageOrderData md : mpod){%>
                             <tr>
-                                <td scope="col">주문날짜</td>
-                                <td scope="col">주문번호</td>
-                                <td scope="col">상품명</td>
-                                <td scope="col">내용</td>
+                                <td scope="col"><%=md.getOrderDate() %></td>
+                                <td scope="col"><%=md.getOrderNo() %></td>
+                                <td scope="col" id="imgtd">
+                                <img src = "/upload/photo/<%=md.getProductImg()%>" style="width:100px; height:100px;">
+                                <%=md.getProductName() %></td>
+                                <%if(md.getStatus()== 1){ %>
+                                <td scope="col">결제완료</td>
+                                <%}else if(md.getStatus()==2) {%>
+                                 <td scope="col">제품준비중</td>
+                                <%}else if(md.getStatus()==3) {%>
+                                <td scope="col">배송중</td>
+                                <%}else if(md.getStatus()==4) {%>
+                                <td scope="col">배송완료</td>
+                                <%} %>
+                                <td scope="col"><%=md.getProductPrice() %></td>
                             </tr>
+                            <%} %>
                         </tbody>
                     </table>
                     <p>
@@ -81,15 +115,35 @@
                             </tr>
                         </tread>
                         <tbody>
+                           	<%for(MyQnAData mq : mqd){%>
                             <tr>
-                                <td>교환문의</td>
-                                <td>색상변경</td>
-                                <td>작성일</td>
-                                <td>답변유무</td>
+                            <%if(mq.getQnaCateNo()==1){ %>
+	                            <td>주문/결제</td>
+                            <%}else if(mq.getQnaCateNo()==2) {%>
+                            	<td>세금계산서</td>
+                            <%}else if(mq.getQnaCateNo()==3) {%>
+                            	<td>배송</td>
+                            <%}else if(mq.getQnaCateNo()==4) {%>
+                            	<td>취소/환불/AS</td>
+                            <%}else if(mq.getQnaCateNo()==5) {%>
+                            	<td>회원관련</td>
+                            <%}else if(mq.getQnaCateNo()==6) {%>
+                            	<td>기타문의</td>
+                            <%} %>
+                                <td><%=mq.getQnaTitle() %></td>
+                                <td><%=mq.getQnaDate() %></td>
+                                <%if(mq.getQnaStatus()==0) {%>
+                                <td>답변대기중</td>
+                                <%} else if(mq.getQnaStatus()==1) {%>
+                                <td>답변완료</td>
+                                <%} %>
+                                <%if(m!=null && mq.getQnaWriter().equals(m.getMemberId())) {%>
                                 <td class="colDelete-btn">
-                                    <button type="button">삭제</button>
+                                    <button type="button" onclick="myPageQnADelete(<%=mq.getQnaNo()%>);">삭제</button>
                                 </td>
+                                <%} %>
                             </tr>
+                            	<%} %>
                         </tbody>
                     </table><!--table 끝-->
                 </div>
@@ -97,5 +151,6 @@
         </div>
     </content><!--컨텐츠 끝-->
 <%@include file ="/WEB-INF/views/common/footer.jsp" %>
+<script src="/js/myPage.js"></script>
 </body>
 </html>

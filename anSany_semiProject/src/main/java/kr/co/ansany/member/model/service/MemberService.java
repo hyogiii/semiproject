@@ -1,11 +1,14 @@
 package kr.co.ansany.member.model.service;
 
-import java.net.ConnectException;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import kr.co.ansany.member.model.dao.MemberDao;
 import kr.co.ansany.member.model.vo.Member;
+import kr.co.ansany.member.model.vo.MyPageOrderData;
+import kr.co.ansany.member.model.vo.MyQnAData;
+import kr.co.ansany.member.model.vo.MypageList;
 
 public class MemberService {
 	private MemberDao dao;
@@ -61,6 +64,30 @@ public class MemberService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	public MypageList myPageList(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MyPageOrderData>list = dao.myPageList(conn,memberId);
+		ArrayList<MyQnAData>qnalist = dao.myQnAList(conn,memberId);
+		
+		MypageList mpl = new MypageList(list, qnalist);
+		
+		JDBCTemplate.close(conn);
+		return mpl;
+	}
+	public MyQnAData deleteQnA(int qnaNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		MyQnAData mqd = dao.selectOneQnA(conn,qnaNo);
+		int result = dao.deleteQna(conn,qnaNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+			
+			mqd = null;
+		}
+		JDBCTemplate.close(conn);
+		return mqd;
 	}
 	
 	

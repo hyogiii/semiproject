@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import kr.co.ansany.member.model.vo.Member;
+import kr.co.ansany.member.model.vo.MyPageOrderData;
+import kr.co.ansany.member.model.vo.MyQnAData;
 
 public class MemberDao {
 
@@ -148,4 +151,120 @@ public class MemberDao {
 		return result;
 	}
 
+
+
+public ArrayList<MyPageOrderData> myPageList(Connection conn, String memberId) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<MyPageOrderData> list = new ArrayList<MyPageOrderData>();
+	String query = "select ORDER_DATE, ORDER_NO, PRODUCT_IMG, PRODUCT_NAME, STATUS, PRODUCT_PRICE from order_tbl join  product_tbl using (product_no) WHERE MEMBER_ID = ? ";
+	
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			MyPageOrderData mpod = new MyPageOrderData();
+			mpod.setOrderDate(rset.getString("order_date"));
+			mpod.setOrderNo(rset.getInt("order_no"));
+			mpod.setProductImg(rset.getString("product_img"));
+			mpod.setProductName(rset.getString("product_name"));
+			mpod.setStatus(rset.getInt("status"));
+			mpod.setProductPrice(rset.getInt("product_price"));
+			
+			list.add(mpod);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+	}
+	return list;
 }
+
+public ArrayList<MyQnAData> myQnAList(Connection conn, String memberId) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	ArrayList<MyQnAData> list = new ArrayList<MyQnAData>();
+	String query ="select qna_no, qna_title, qna_date, qna_cate_no, qna_writer,\r\n"
+			+ "(select count(*) from qna_comment where qna_ref = qna_no) as commentCheck\r\n"
+			+ "from qna_tbl where QNA_WRITER = ? order by qna_date";
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1,memberId);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			MyQnAData mqd = new MyQnAData();
+			mqd.setQnaCateNo(rset.getInt("qna_cate_no"));
+			mqd.setQnaDate(rset.getString("qna_date"));
+			mqd.setQnaStatus(rset.getInt("commentCheck"));
+			mqd.setQnaTitle(rset.getString("qna_title"));
+			mqd.setQnaWriter(rset.getString("qna_writer"));
+			mqd.setQnaNo(rset.getInt("qna_no"));
+			list.add(mqd);
+
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+	}
+	
+	return list;
+}
+
+public MyQnAData selectOneQnA(Connection conn, int qnaNo) {
+	
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	MyQnAData mqd = null;
+	String query = "select * from qna_tbl where qna_no = ?";
+	try {
+		pstmt=conn.prepareStatement(query);
+		pstmt.setInt(1, qnaNo);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			mqd = new MyQnAData();
+			mqd.setQnaNo(rset.getInt("qna_no"));
+			mqd.setQnaTitle(rset.getString("qna_title"));
+			mqd.setQnaWriter(rset.getString("qna_writer"));
+			mqd.setQnaDate(rset.getString("qna_date"));
+			mqd.setQnaCateNo(rset.getInt("qna_cate_no"));
+			mqd.setQnaFilepath(rset.getString("qna_filepath"));
+			mqd.setQnaFilename(rset.getString("qna_filename"));
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+	}
+	
+	return mqd;
+}
+
+public int deleteQna(Connection conn, int qnaNo) {
+	PreparedStatement pstmt = null;
+	int result = 0;
+	String query = "delete from qna_tbl where qna_no=?";
+	try {
+		pstmt=conn.prepareStatement(query);
+		pstmt.setInt(1, qnaNo);
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(pstmt);
+	}
+	return result;
+}
+
+}
+

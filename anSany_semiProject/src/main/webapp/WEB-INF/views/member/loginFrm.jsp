@@ -1,6 +1,11 @@
 <%@page import="kr.co.ansany.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
     <!--css-->
     <link rel="stylesheet" href="/css/login.css">
     <!--fonts-->
@@ -9,11 +14,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 	.header-logo>a>img{
 		margin-top: 29.5px;
@@ -28,7 +28,7 @@
                 <h1>회원 로그인</h1>
             </div>
             <div class="login-content">
-                <form action="/login.do" method="post" name="loginFrm">
+                <form action="/login.do" method="post" name="loginFrm" autocomplete="off">
                     <div class="login-input-box">
                         <input type="text" name="signId" id="signId" class="login-input-form" placeholder="아이디">
                         <i></i>

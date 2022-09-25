@@ -26,12 +26,16 @@ agreeOneBtn.on("click",function(){
     $(".modal-wrap").css("display","none");
 });
 
-$(".btn-agree").on("click",function(){
-    const status = $("input[name=essential]").is(":checked");
-    if(status){
-        location.href="/joinFrm.do";
-    }else{
-        alert("약관에 동의해주세요");
-        
-    }
+let essential = [];
+$("#agreenextBtn").on("click",function(){
+	essential[0] = $("#chk00").is(":checked");
+	essential[1] = $("#chk01").is(":checked");
+	essential[2] = $("#chk02").is(":checked");
+	essential[3] = $("#chk03").is(":checked");
+	
+	if(essential[0] && essential[1] && essential[2] && essential[3] == true){
+		location.href="/joinFrm.do";
+	}else{
+		alert("약관에 동의하세요");
+	}
 });

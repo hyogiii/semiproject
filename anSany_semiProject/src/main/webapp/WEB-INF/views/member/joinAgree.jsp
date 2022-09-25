@@ -95,7 +95,7 @@
 			<div class="agree-footer">
 				<div class="agree-btn-box">
 					<a href="#">
-						<button type="button" class="btn-agree">동의</button>
+						<button type="button" class="btn-agree" id="agreenextBtn">동의</button>
 					</a>
 				</div>
 			</div>
@@ -296,7 +296,6 @@
 	</div>
 	<!--modal-wrap끝-->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
-	<script src="/js/header.js"></script>
 	<script src="/js/joinAgree.js"></script>
 </body>
 </html>

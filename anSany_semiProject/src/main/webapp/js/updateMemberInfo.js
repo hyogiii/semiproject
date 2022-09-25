@@ -184,3 +184,19 @@ $("#sendEmailBtn").on("click",function(event){
 		}).open();
 	}
 	
+	$("[name=withdrawal").on("click",function(event){
+    $(".modal-wrap").css("display","flex");
+    
+});
+
+$("#backBtn").on("click",function(){
+    $(".modal-wrap").css("display","none");
+});
+$("#deleteBtn").on("click",function(){
+    const deleteChk = $("#deleteChk").is(":checked");
+    if(!deleteChk){
+        alert("체크박스를 확인하세요");
+    }else{
+		location.href="/deleteMember.do";
+    }
+});

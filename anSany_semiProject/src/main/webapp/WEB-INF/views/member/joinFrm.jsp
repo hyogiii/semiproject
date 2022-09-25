@@ -21,11 +21,10 @@
                 <span>안사니 통합 웹회원 정책상 공식적으로 만 14세 미만의 경우 회원가입이 불가합니다.</span>
             </div>
             <div class="join-content">
-                <form action="/join.do" method="post" name="joinFrm">
+                <form action="/join.do" method="post" name="joinFrm" autocomplete="off">
                     <div class="join-box">
                         <label for="memberId">아이디</label>
                         <input type="text" name="memberId" id="memberId" class="join-input-form" placeholder="아이디" required>   
-                        <button type="button" id="idChkBtn" class="idChkBtn">중복확인</button>
                         <span class="comment" id="idComment"></span>
                     </div>
                     <div class="join-box">

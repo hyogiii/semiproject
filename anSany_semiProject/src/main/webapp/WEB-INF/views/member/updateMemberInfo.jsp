@@ -27,7 +27,7 @@
 						href="/myPageFrm.do" class="myPageLink">마이페이지</a>
 				</div>
 				<div class="span-box-right">
-					<a href="/deleteMember.do" class="withdrawalLink" name="withdrawal">회원탈퇴</a>
+					<a href="javasript:void(0);" class="withdrawalLink" name="withdrawal">회원탈퇴</a>
 					<span class="material-symbols-outlined">chevron_right</span>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="memberInfo-content">
 		<div class="updateMemberInfo">
-			<form action="/updateMemberInfo.do" method="post" name="updateMemberFrm">
+			<form action="/updateMemberInfo.do" method="post" name="updateMemberFrm" autocomplete="off">
 				<div class="update-box">
 					<label for="memberId">아이디</label> <input type="text"
 						name="memberId" id="memberId" class="update-input-form"
@@ -122,6 +122,33 @@
 	</div>
 	</content>
 	<!-- content 끝-->
+	    <div class="modal-wrap">
+        <div class="modal">
+            <div class="delete-box">
+                    <div class="deleteTitle">
+                        <h1>안사니 탈퇴전 확인하세요</h1>
+                        <div class="delete-header">
+                            <span>탈퇴하시면 이용중인 안사니 멤버십 혜택은 모두 사라지며</span>
+                            <span>관련 데이터 일부는 복구가 불가능합니다</span>
+                        </div>
+                        <div class="delete-content">
+                            <ul class="contentBox">
+                                <li>작성하신 글,사진과 주문내역 모든 정보가 삭제됩니다</li>
+                                <li>타인 글의 작성된 댓글은 삭제되지 않으니 미리 확인하세요</li>
+                            </ul>
+                            <div class="delete-box">
+                                <input type="checkbox" class="delete_check" id="deleteChk" name="deleteChk">
+                                <label for="deleteChk">안내사항을 모두 확인하였으며 이에 동의합니다</label>
+                            </div>
+                        </div>
+                        <div class="deleteBtnBox">
+                            <button type="button" class="backBtn" id="backBtn">취소</button>
+                            <button type="submmit" class="deleteBtn" id="deleteBtn">탈퇴</button>
+                        </div>
+                    </div>
+            	</div>
+        </div>
+    </div><!--modal 끝-->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 	<!-- script 끝 -->
 	<script src="/js/updateMemberInfo.js"></script>
