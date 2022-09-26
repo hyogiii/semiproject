@@ -3,7 +3,10 @@ function myPageQnADelete(qnaNo,memberId){
 		location.href="/myPageQnADelete.do?qnaNo="+qnaNo+"&&memberId="+memberId;
 	}
 }
+
+
 function addComma(value){
                 value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 return value;
         };
+        addComma();

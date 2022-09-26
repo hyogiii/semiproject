@@ -65,7 +65,7 @@ $("#memberEmail").on("keyup",function(event){
             //이메일 중복확인후
             emailComment.text("사용가능합니다.");
             emailComment.css("color","blue");
-            emailChkResult = ture;
+            emailChkResult = true;
         }else{
             emailComment.text("다시입력하세요");
             emailComment.css("color","red");
@@ -90,11 +90,11 @@ $("#memberPhone").on("keyup",function(event){
         if(phoneReg.test(phoneValue)){
             phoneComment.text("사용가능합니다.");
             phoneComment.css("color","blue");
-            phoneChkResult = ture;
+            phoneChkResult = true;
         }else{
             phoneComment.text("핸드폰 번호는 - 포함입니다.");
             phoneComment.css("color","red");
-            phoneChkResult = ture;
+            phoneChkResult = true;
             event.preventDefault();
         }
     }
@@ -169,7 +169,7 @@ $("#sendEmailBtn").on("click",function(event){
 			$("#authMsg").text("인증시간 만료");
 			$("#authMsg").css("color","red");
 			authStatus = false;
-			event.preventDefault();o
+			event.preventDefault();
 		}
 	});	
 	

@@ -22,10 +22,10 @@
                             <li>
                                 <a href="#">제품</a>
                                 <ul>
-                                    <li><a href="#">헤드폰/이어폰</a></li>
-                                    <li><a href="#">스피커</a></li>
-                                    <li><a href="#">턴테이블</a></li>
-                                    <li><a href="#">워크맨</a></li>
+                                    <li><a href="/catgory1List.do">헤드폰/이어폰</a></li>
+                                	<li><a href="/catgory2List.do">스피커</a></li>
+                                	<li><a href="/catgory3List.do">턴테이블</a></li>
+                                	<li><a href="/catgory4List.do">워크맨</a></li>
                                 </ul>
                             </li>
                             <li>

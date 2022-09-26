@@ -56,9 +56,9 @@ public class loginServlet extends HttpServlet {
 			session.setAttribute("m", m);
 		}else {
 			//로그인실패
-			request.setAttribute("title", "로그인 권한없음");
-			request.setAttribute("msg", "로그인 권한이 없습니다. 관리자에게 문의하세요");
-			request.setAttribute("icon", "warning");
+			request.setAttribute("title", "로그인 실패");
+			request.setAttribute("msg", "아이디와 비밀번호를 확인해주세요");
+			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/");
 		}
 		view.forward(request, response);

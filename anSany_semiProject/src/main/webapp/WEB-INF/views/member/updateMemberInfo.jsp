@@ -24,7 +24,7 @@
 			<div class="span-wrap">
 				<div class="span-box-left">
 					<span class="material-symbols-outlined">chevron_left</span> <a
-						href="/myPageFrm.do" class="myPageLink">마이페이지</a>
+						href="/myPageFrm.do?memberId=<%=m.getMemberId() %>" class="myPageLink">마이페이지</a>
 				</div>
 				<div class="span-box-right">
 					<a href="javasript:void(0);" class="withdrawalLink" name="withdrawal">회원탈퇴</a>
@@ -50,14 +50,14 @@
 					<label for="memberPwRe">비밀번호 확인</label> <input type="password"
 						name="memberPwRe" id="memberPwRe" class="short-input-form"
 						placeholder="비밀번호" required> <span class="comment"></span>
-					<button type="button" class="updateOne-btn">비밀번호 변경</button>
+					<button type="submit" class="updateOne-btn">비밀번호 변경</button>
 				</div>
 				<div class="update-box">
 					<label for="memberEmail">이메일</label> <input type="text"
 						name="memberEmail" id="memberEmail" class="short-input-form"
 						placeholder="이메일 (ex : ansany@gmail.com)"
 						value="<%=m.getMemberEmail()%>"> <span class="comment"></span>
-					<button id="sendEmailBtn" class="sendEmailBtn">인증메일전송</button>
+					<button type="button" id="sendEmailBtn" class="sendEmailBtn">인증메일전송</button>
 					<!--display: none-->
 					<div id="auth">
 						<input type="text" id="authCode" placeholder="인증코드입력">
@@ -126,7 +126,7 @@
         <div class="modal">
             <div class="delete-box">
                     <div class="deleteTitle">
-                        <h1>안사니 탈퇴전 확인하세요</h1>
+                        <h1>안사니 탈퇴 전 확인하세요</h1>
                         <div class="delete-header">
                             <span>탈퇴하시면 이용중인 안사니 멤버십 혜택은 모두 사라지며</span>
                             <span>관련 데이터 일부는 복구가 불가능합니다</span>
