@@ -71,12 +71,12 @@
 				</div>
 				<div class="update-box">
 					<label for="memberName">이름</label> <input type="text"
-						name="memberName" id="memberName" class="update-input-form"
+						name="memberName" id="memberName" class="update-input-form" value="<%=m.getMemberName()%>"
 						disabled>
 				</div>
 				<div class="update-box">
 					<label for="memberBirth">생년월일</label> <input type="text"
-						name="memberBirth" id="memberBirth" class="update-input-form"
+						name="memberBirth" id="memberBirth" class="update-input-form" value="<%=m.getMemberBirth()%>"
 						disabled>
 				</div>
 				<div class="update-box">

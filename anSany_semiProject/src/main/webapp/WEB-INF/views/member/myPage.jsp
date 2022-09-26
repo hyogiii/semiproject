@@ -74,7 +74,7 @@
                                 <td scope="col"><%=md.getOrderNo() %></td>
                                 <td scope="col" id="imgtd">
                                 <img src = "/upload/photo/<%=md.getProductImg()%>" style="width:100px; height:100px;">
-                                <%=md.getProductName() %></td>
+                                <span><%=md.getProductName() %></span></td>
                                 <%if(md.getStatus()== 1){ %>
                                 <td scope="col">결제완료</td>
                                 <%}else if(md.getStatus()==2) {%>
@@ -84,7 +84,7 @@
                                 <%}else if(md.getStatus()==4) {%>
                                 <td scope="col">배송완료</td>
                                 <%} %>
-                                <td scope="col"><%=md.getProductPrice() %></td>
+                                <td scope="col" class="productPrice"><%=md.getProductPrice() %></td>
                             </tr>
                             <%} %>
                         </tbody>
@@ -139,7 +139,7 @@
                                 <%} %>
                                 <%if(m!=null && mq.getQnaWriter().equals(m.getMemberId())) {%>
                                 <td class="colDelete-btn">
-                                    <button type="button" onclick="myPageQnADelete(<%=mq.getQnaNo()%>);">삭제</button>
+                                    <button type="button" onclick="myPageQnADelete(<%=mq.getQnaNo() %>,'<%=m.getMemberId() %>');">삭제</button>
                                 </td>
                                 <%} %>
                             </tr>
@@ -152,5 +152,12 @@
     </content><!--컨텐츠 끝-->
 <%@include file ="/WEB-INF/views/common/footer.jsp" %>
 <script src="/js/myPage.js"></script>
+<script>
+function addComma(value){
+    value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return value;
+};
+addComma($(".productPrice"));
+</script>
 </body>
 </html>

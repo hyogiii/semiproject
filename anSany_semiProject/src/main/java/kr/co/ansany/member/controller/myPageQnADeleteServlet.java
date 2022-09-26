@@ -37,6 +37,7 @@ public class myPageQnADeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+		String memberId = request.getParameter("memberId");
 		//3. 비즈니스 로직
 		MemberService service = new MemberService();
 		MyQnAData mqd = service.deleteQnA(qnaNo);
@@ -52,7 +53,7 @@ public class myPageQnADeleteServlet extends HttpServlet {
 			request.setAttribute("title", "삭제완료");
 			request.setAttribute("msg", "삭제가 완료되었습니다.");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/myPageFrm.do");
+			request.setAttribute("loc", "/myPageFrm.do?memberId="+memberId);
 		}else {
 			request.setAttribute("title", "삭제실패");
 			request.setAttribute("msg", "관리자에게 문의하세요");

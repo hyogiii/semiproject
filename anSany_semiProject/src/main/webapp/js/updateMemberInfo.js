@@ -184,6 +184,10 @@ $("#sendEmailBtn").on("click",function(event){
 		}).open();
 	}
 	
+	$(".cansleInfo-btn").on("click",function(){
+		const memberId = $("#memberId").val();
+		location.href="/myPageFrm.do?memberId="+memberId;
+	});
 	$("[name=withdrawal").on("click",function(event){
     $(".modal-wrap").css("display","flex");
     

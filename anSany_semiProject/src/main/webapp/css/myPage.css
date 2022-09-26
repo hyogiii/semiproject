@@ -98,6 +98,10 @@ td{
     color: #221e1f;
     text-align: center;
 }
+#imgtd>span{
+	display:block;
+	margin-bottom: 20px;
+}
 .memberOrder_tbl>p{
     margin: 30px 0;
     padding: 10px 0;
